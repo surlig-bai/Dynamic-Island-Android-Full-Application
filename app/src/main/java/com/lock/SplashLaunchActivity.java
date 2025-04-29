@@ -337,16 +337,16 @@ public class SplashLaunchActivity extends AppCompatActivity {
 
         if(CheckAds.equals("max")){
             // Make sure to set the mediation provider value to "max" to ensure proper functionality
-            AppLovinSdk.getInstance( this ).setMediationProvider( "max" );
-            AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener() {
-                @Override
-                public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
-                {
-                    // AppLovin SDK is initialized, start loading ads
-                }
-            } );
-
-            MAXInitialization(SplashLaunchActivity.this);
+//            AppLovinSdk.getInstance( this ).setMediationProvider( "max" );
+//            AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener() {
+//                @Override
+//                public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+//                {
+//                    // AppLovin SDK is initialized, start loading ads
+//                }
+//            } );
+//
+//            MAXInitialization(SplashLaunchActivity.this);
 
         }
 

@@ -17,9 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.dynamic.island.harsha.notification.R;
 import com.lock.SplashLaunchActivity;
 import com.lock.services.MAccessibilityService;
 import com.lock.services.NotificationService;
@@ -27,8 +29,9 @@ import com.lock.utils.Constants;
 import com.nordan.dialog.Animation;
 import com.nordan.dialog.NordanAlertDialog;
 import com.nordan.dialog.NordanAlertDialogListener;
-import com.dynamic.island.harsha.notification.R;
+
 import java.util.List;
+
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -37,7 +40,7 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
     private boolean bluetoothPermissionGranted;
     TextView lockScreen;
     Context mContxt;
-    
+
     public Button next_btn;
     NotificationManager notificationManager;
     private ToggleButton toggle_enable;
@@ -51,7 +54,7 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
     public void onRationaleDenied(int i) {
     }
 
-    
+
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView((int) R.layout.activity_permission);
@@ -89,18 +92,22 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
         this.toggle_enable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton compoundButton, boolean z) {
                 if (z) {
-                    new NordanAlertDialog.Builder(PermissionsActivity.this).setAnimation(Animation.SLIDE).isCancellable(false).setTitle("Accessibility Permission Disclosure & Consent").setMessage("This app needs to be activated in accessibility service to show dynamic island view on top of mobile screen.\n\n1- This application do not collect or share any user data.\n\n2- This application do not store any sort of user data.").setPositiveBtnText("Agree").setNegativeBtnText("Cancel").setIcon((int) R.drawable.allert, false).onPositiveClicked(new PermissionsActivityExternalSynthetic1(this)).onNegativeClicked(new PermissionsActivityExternalSynthetic2(this)).build().show();
+                    new NordanAlertDialog.Builder(PermissionsActivity.this).setAnimation(Animation.SLIDE).isCancellable(false)
+                            .setTitle("Accessibility Permission Disclosure & Consent")
+                            .setMessage("This app needs to be activated in accessibility service to show dynamic island view on top of mobile screen.\n\n1- This application do not collect or share any user data.\n\n2- This application do not store any sort of user data.")
+                            .setPositiveBtnText("Agree").setNegativeBtnText("Cancel").setIcon((int) R.drawable.allert, false)
+                            .onPositiveClicked(new PermissionsActivityExternalSynthetic1(this)).onNegativeClicked(new PermissionsActivityExternalSynthetic2(this)).build().show();
                     return;
                 }
                 PermissionsActivity.stopService(PermissionsActivity.this.mContxt, 0);
                 PermissionsActivity.this.next_btn.setVisibility(8);
             }
 
-            public  void m82x9e5f95c4() {
+            public void m82x9e5f95c4() {
                 PermissionsActivity.this.enableLock();
             }
 
-            public  void m83xa5c4cae3() {
+            public void m83xa5c4cae3() {
                 PermissionsActivity.this.finish();
             }
         });
@@ -116,7 +123,7 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
                 }
             }
 
-            public  void m84x9e5f95c5(boolean z) {
+            public void m84x9e5f95c5(boolean z) {
                 try {
                     Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
                     Bundle bundle = new Bundle();
@@ -132,7 +139,7 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
                 Constants.setNotif(PermissionsActivity.this.mContxt, z);
             }
 
-            public  void m85xa5c4cae4() {
+            public void m85xa5c4cae4() {
                 PermissionsActivity.this.finish();
             }
         });
@@ -152,13 +159,13 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
         this.bluetoothPermissionGranted = true;
     }
 
-    public  void m80lambda$onCreate$0$comlockactivitesPermissionsActivity(View view) {
+    public void m80lambda$onCreate$0$comlockactivitesPermissionsActivity(View view) {
         startActivity(new Intent(this.mContxt, HomeActivity.class));
         overridePendingTransition(R.anim.anim_right_in, R.anim.anim_right_out);
         finish();
     }
 
-    public  void m81lambda$onCreate$1$comlockactivitesPermissionsActivity(CompoundButton compoundButton, boolean z) {
+    public void m81lambda$onCreate$1$comlockactivitesPermissionsActivity(CompoundButton compoundButton, boolean z) {
         EasyPermissions.requestPermissions((Activity) this, getString(R.string.blutooth_permission_txt), 16, Constants.BLUETOOTH_PERMISSION);
     }
 
@@ -211,7 +218,7 @@ public class PermissionsActivity extends AppCompatActivity implements EasyPermis
         super.onResume();
     }
 
-    
+
     public void enableLock() {
         Intent intent = new Intent("com.samsung.accessibility.installed_service");
         if (intent.resolveActivity(this.mContxt.getPackageManager()) == null) {
